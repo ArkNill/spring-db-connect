@@ -6,14 +6,17 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Document(indexName = "audiolist", type = "sound")
+@Document(indexName = "audiolist")
 @Builder
 public class ElasticSound {
 	@Id
@@ -22,4 +25,5 @@ public class ElasticSound {
 	private String title;
 	private String company;
 	private String content;
+//@Document(indexName = "audiolist", type = "sound")
 }
