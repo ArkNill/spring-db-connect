@@ -1,2 +1,2 @@
 # spring-db-connect
-Spring Project Connected With Elasticsearch, MongoDB, PostgreSQL
+Spring Legacy Project Connected With Elasticsearch, MongoDB, PostgreSQL
