@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.mycom.spring">
+	<logger name="kr.co.inspect">
 		<level value="info" />
 	</logger>
 	

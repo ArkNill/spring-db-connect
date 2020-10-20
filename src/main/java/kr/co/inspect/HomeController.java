@@ -1,4 +1,4 @@
-package com.mycom.spring;
+package kr.co.inspect;
 
 import java.text.DateFormat;
 import java.util.Date;
