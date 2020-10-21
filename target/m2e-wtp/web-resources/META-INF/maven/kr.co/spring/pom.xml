@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.co</groupId>
 	<artifactId>spring</artifactId>
-	<name>spring-db-connect-practice</name>
+	<name>spring-db-connect</name>
 	<packaging>war</packaging>
 	<version>2.0.0-BUILD-SNAPSHOT</version>
 	<properties>

@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>kr.com</groupId>
+	<groupId>kr.co</groupId>
 	<artifactId>insepct</artifactId>
 	<name>spring-db-connect</name>
 	<packaging>war</packaging>
@@ -323,6 +323,7 @@
 		            <failOnMissingWebXml>false</failOnMissingWebXml>
 		        </configuration>
 		    </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
