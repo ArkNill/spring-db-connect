@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>테스트 페이지</title>
+<title>ElasticData</title>
 </head>
 <body>
-<h2>테스트 페이지</h2>
+<h2>ElasticData 목록</h2>
+<div>
+	${result}
+</div>
+<a href="index.jsp">처음으로</a>
 </body>
 </html>

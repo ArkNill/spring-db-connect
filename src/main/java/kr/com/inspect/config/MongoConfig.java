@@ -1,16 +1,21 @@
 package kr.com.inspect.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import com.mongodb.MongoClient;
 
 @Configuration
+@PropertySource(value = "classpath:db.properties")
 public class MongoConfig {
 	
-	private String hostname = "localhost";
-	private int port = 27017;
+	@Value("${mongoDB.hostname}") 
+	private String hostname;
 	
+	@Value("${mongoDB.port}") 
+	private int port;
 	
 	@Bean
 	public MongoClient mongoClient() {

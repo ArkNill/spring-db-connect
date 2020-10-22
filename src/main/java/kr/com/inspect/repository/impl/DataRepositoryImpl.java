@@ -1,4 +1,4 @@
-package kr.com.inspect;
+package kr.com.inspect.repository.impl;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -21,24 +21,25 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 
-public class ElasticMongoTest {
+import kr.com.inspect.repository.DataRepository;
+
+@Repository
+public class DataRepositoryImpl implements DataRepository{
+	@Autowired
+	private RestHighLevelClient elasticClient;
 	
 	@Autowired
-	RestHighLevelClient elasticClient;
-	
-	@Autowired
-	MongoClient mongoClient;
+	private MongoClient mongoClient;
 	
 	/* 엘라스틱서치 */
 	private String index = "audiolist";
 	
 	/* 몽고DB */
-	private String database = "testDB";
+	private String database = "sound";
 	private String col  = index;
 	
 	/* 자원 회수 */
-	public void closeResources() {
-		mongoClient.close();
+	public void closeElastic() {
 		try {
 			elasticClient.close();
 		} catch (IOException e) {
@@ -46,14 +47,9 @@ public class ElasticMongoTest {
 		}
 	}
 	
-	@Test
-	public void test() {
-		insertElasticIndexToMongo(index, database, col);
-		closeResources();
-	}
-	
 	/* 엘라스틱서치에서 해당되는 인덱스에 있는 데이터 모두 가져오기 */
-	public SearchHit[] getAllIndexInElastic(String index) {
+	@Override
+	public SearchHit[] getAllIndexInElastic() {
 		// 엘라스틱서치 index 설정
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         SearchRequest searchRequest = new SearchRequest().indices(index);
@@ -65,14 +61,18 @@ public class ElasticMongoTest {
         }catch (IOException e){
             System.out.println("search error");
         }
+        
         SearchHit[] searchHits = searchResponse.getHits().getHits();
+        closeElastic();
+        
         return searchHits;
 	}
 	
 	/* 몽고DB에 엘라스틱서치에서 받아온 인덱스 데이터를 입력하기 */
-	public void insertElasticIndexToMongo(String index, String database, String col) {
+	@Override
+	public void insertElasticIndexToMongo() {
 		// 인덱스를 통해 엘라스틱서치에서 데이터를 받아옴
-		SearchHit[] searchHits = getAllIndexInElastic(index);
+		SearchHit[] searchHits = getAllIndexInElastic();
 		
 		@SuppressWarnings("deprecation")
 		DB DB = mongoClient.getDB(database);
@@ -97,5 +97,7 @@ public class ElasticMongoTest {
         for (Document doc : documents){
             System.out.println(doc.toJson());
         }
+        
+        mongoClient.close();
 	}
 }

@@ -8,7 +8,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 @Configuration
-@ComponentScan(basePackages= {"kr.co.inspect"})
+@ComponentScan(basePackages= {"kr.com.inspect"})
 public class WebConfig  extends AbstractAnnotationConfigDispatcherServletInitializer{
 
 	@Override
