@@ -5,4 +5,5 @@ import org.elasticsearch.search.SearchHit;
 public interface DataRepository {
 	public SearchHit[] getAllIndexInElastic();
 	public void insertElasticIndexToMongo();
+	public void insertMongo();
 }

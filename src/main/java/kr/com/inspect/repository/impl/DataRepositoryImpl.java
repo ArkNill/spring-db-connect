@@ -1,6 +1,8 @@
 package kr.com.inspect.repository.impl;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bson.Document;
 import org.elasticsearch.action.search.SearchRequest;
@@ -99,5 +101,34 @@ public class DataRepositoryImpl implements DataRepository{
         }
         
         mongoClient.close();
+	}
+	
+	public void insertMongo() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", "elsa");
+		map.put("age", "40");
+		map.put("address", "seoul");
+		map.put("job", "programmer");
+		
+		@SuppressWarnings("deprecation")
+		DB DB = mongoClient.getDB(database);
+		DBCollection collection = DB.getCollection(col);
+
+		String json;
+		DBObject dbObject;
+
+		dbObject = (DBObject)map;
+		collection.insert(dbObject);
+		        
+		// db.test.find()
+		MongoDatabase mDB = mongoClient.getDatabase(database);
+		MongoCollection<Document> mCollection = mDB.getCollection(col);
+		FindIterable<Document> documents = mCollection.find();
+		System.out.println(String.format("\n%s collection",col));
+		for (Document doc : documents){
+			System.out.println(doc.toJson());
+		}
+		
+		mongoClient.close();
 	}
 }

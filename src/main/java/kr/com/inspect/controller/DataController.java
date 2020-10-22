@@ -17,11 +17,6 @@ public class DataController {
 	@Autowired
 	private DataService dataService;
 	
-	@GetMapping("/testPage")
-	public String moveTestPage() {
-		return "testPage";
-	}
-	
 	@GetMapping("/elasticData")
 	public String getAllIndexInElastic(Model model) {
 		SearchHit[] searchHits = dataRepository.getAllIndexInElastic();
