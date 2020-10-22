@@ -9,8 +9,7 @@
 <body>
 <h2>MongoDB 테스트 페이지</h2>
 <div>
-	<h3>MongoDB 입력 테스트</h3>
-	
+	<h3>MongoDB 입력 성공</h3>
 </div>
 </body>
 </html>

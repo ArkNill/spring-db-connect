@@ -15,4 +15,10 @@ public class TestController {
 	public String moveTestPage() {
 		return "test/testPage";
 	}
+	
+	@GetMapping("/mongoTest")
+	public String testMongo() {
+		dataRepository.testMongoInsert();
+		return "test/mongoTest";
+	}
 }
