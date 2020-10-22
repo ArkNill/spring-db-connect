@@ -17,10 +17,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//@Configuration
-//@PropertySource(value = "classpath:db.properties")
-//@EnableTransactionManagement
-//@EnableJpaRepositories({"kr.com.inspect.repository"})
+@Configuration
+@PropertySource(value = "classpath:db.properties")
+@EnableTransactionManagement
+@EnableJpaRepositories({"kr.com.inspect.repository"})
 public class PostgreConfig {
 	
 	/* JDBC 정보 */

@@ -13,6 +13,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -26,6 +27,7 @@ import com.mongodb.util.JSON;
 import kr.com.inspect.repository.DataRepository;
 
 @Repository
+@Transactional
 public class DataRepositoryImpl implements DataRepository{
 	@Autowired
 	private RestHighLevelClient elasticClient;

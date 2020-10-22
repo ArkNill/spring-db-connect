@@ -28,6 +28,7 @@ public class ElasticPostgreTest {
 	@Autowired
 	RestHighLevelClient elasticClient;
 	
+	
 	/* 엘라스틱서치 */
 	private String index = "audiolist";
 	
