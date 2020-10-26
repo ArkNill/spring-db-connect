@@ -13,10 +13,11 @@ public class WebConfig  extends AbstractAnnotationConfigDispatcherServletInitial
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { RootConfig.class, 
+		return new Class[] { 
 							ElasticConfig.class, 
 							MongoConfig.class,
-							PostgreConfig.class};
+							PostgreConfig.class
+							};
 	}
 
 	@Override

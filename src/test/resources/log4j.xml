@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="kr.co.inspect">
+	<logger name="kr.com.inspect">
 		<level value="info" />
 	</logger>
 	

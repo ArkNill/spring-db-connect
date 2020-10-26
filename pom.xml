@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.com</groupId>
-	<artifactId>insepct</artifactId>
+	<artifactId>inspect</artifactId>
 	<name>spring-db-connect</name>
 	<packaging>war</packaging>
-	<version>2.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.2.2.RELEASE</org.springframework-version>
@@ -32,22 +32,19 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+		<!-- spring-tx(transaction) -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>5.2.9.RELEASE</version>
+		</dependency>
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
-		
-		<!-- assertj -->
-		<dependency>
-		    <groupId>org.assertj</groupId>
-		    <artifactId>assertj-core</artifactId>
-		    <version>3.16.1</version>
-		    <scope>test</scope>
-		</dependency>
-		
 		
 		<!-- Logging -->
 		<dependency>
@@ -70,7 +67,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
+			<version>1.2.17</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>
@@ -91,12 +88,13 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-to-slf4j</artifactId>
-		    <version>2.8.2</version>
-		</dependency>
-
+		<!-- log4j-core -->
+       <dependency>
+           <groupId>org.apache.logging.log4j</groupId>
+           <artifactId>log4j-core</artifactId>
+           <version>2.11.1</version>
+       </dependency>
+       
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -122,11 +120,6 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.2.1</version>
-		</dependency>
 		
 		<!-- javax.persistence -->
 		<dependency>
@@ -135,75 +128,24 @@
 		    <version>2.2.1</version>
 		</dependency>
 		
-		<!-- commons-codec -->
-		<dependency>
-		    <groupId>commons-codec</groupId>
-		    <artifactId>commons-codec</artifactId>
-		    <version>1.11</version>
-		</dependency>
-		
-		<!-- compiler -->
-		<dependency>
-		    <groupId>com.github.spullara.mustache.java</groupId>
-		    <artifactId>compiler</artifactId>
-		    <version>0.9.6</version>
-		</dependency>
-		
-		<!-- jackson-annotations -->
+		<!-- jackson.core -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-annotations</artifactId>
-		    <version>2.11.0</version>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.11.3</version>
 		</dependency>
 		
-		<!-- jackson-core -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		    <version>2.11.0</version>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
 		</dependency>
 		
-		<!-- lombok -->
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.8</version>
-		    <scope>provided</scope>
-		</dependency>
-		
-		<!-- guava -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>30.0-jre</version>
-		</dependency>
-		
-		<!-- javax.annotation -->
-		<dependency>
-		    <groupId>javax.annotation</groupId>
-		    <artifactId>javax.annotation-api</artifactId>
-		    <version>1.3.2</version>
-		</dependency>
-		
-		<!-- commons-dbcp -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>	
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		
-		<!-- commons-pool2 -->
+		<!-- connection pool -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>	
-			<version>2.6.0</version>
-		</dependency>
-		
-		<!-- spring-tx -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-tx</artifactId>
-		    <version>5.0.5.RELEASE</version>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.8.0</version>
 		</dependency>
 		
 		<!-- spring-jdbc -->
@@ -213,102 +155,62 @@
 		    <version>5.1.3.RELEASE</version>
 		</dependency>
 		
-		<!-- elasticsearch -->
-		<dependency>
-		    <groupId>org.elasticsearch</groupId>
-		    <artifactId>elasticsearch</artifactId>
-		    <version>7.6.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-elasticsearch</artifactId>
-		    <version>4.0.4.RELEASE</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.elasticsearch.client</groupId>
-		    <artifactId>elasticsearch-rest-client</artifactId>
-		    <version>7.6.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.elasticsearch.client</groupId>
-		    <artifactId>elasticsearch-rest-high-level-client</artifactId>
-		    <version>7.6.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.elasticsearch</groupId>
-		    <artifactId>elasticsearch-ssl-config</artifactId>
-		    <version>7.6.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.elasticsearch.plugin</groupId>
-		    <artifactId>aggs-matrix-stats-client</artifactId>
-		    <version>7.6.2</version>
-		</dependency>
-		
-		<!-- Spring Data JPA -->
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-jpa</artifactId>
-		    <version>2.3.4.RELEASE</version>
-		</dependency>
-		
-		<!-- Hibernate -->
-		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
-		    <version>5.4.22.Final</version>
-		</dependency>
-	
 		<!-- mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
-		    <version>3.4.6</version>
+		    <version>3.5.6</version>
 		</dependency>
-
-		<!-- mybatis-spring -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis-spring</artifactId>
-		    <version>1.3.2</version>
+		    <version>2.0.5</version>
 		</dependency>
 		
-		<!-- PostgreSQL 9.4 -->
-	    <dependency>
-	        <groupId>org.postgresql</groupId>
-	        <artifactId>postgresql</artifactId>
-	        <version>9.4.1209.jre6</version>
-	    </dependency>
-		
-		<!-- mysql-connector-java -->
+		<!-- postgresql -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.15</version>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.18</version>
 		</dependency>
 		
-		<!-- mongo-java-driver -->
+		<!-- Elasticsearch -->
 		<dependency>
-    		<groupId>org.mongodb</groupId>
-    		<artifactId>mongo-java-driver</artifactId>
-    		<version>3.4.1</version>
-		</dependency>
-		
+           <groupId>org.elasticsearch</groupId>
+           <artifactId>elasticsearch</artifactId>
+           <version>7.9.2</version>
+       </dependency>
+       <dependency>
+           <groupId>org.elasticsearch.client</groupId>
+           <artifactId>elasticsearch-rest-high-level-client</artifactId>
+           <version>7.9.2</version>
+       </dependency>
+
+       <!-- MongoDB -->
+       <dependency>
+           <groupId>org.mongodb</groupId>
+           <artifactId>mongo-java-driver</artifactId>
+           <version>3.12.7</version>
+       </dependency>
+	
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>    
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${org.springframework-version}</version>
-		</dependency>    
+		</dependency>        
 	</dependencies>
     <build>
         <plugins>
+        	  <plugin>
+				  <groupId>org.apache.maven.plugins</groupId>
+				  <artifactId>maven-war-plugin</artifactId>
+				  <version>3.2.0</version>
+				  <configuration>
+					  <failOnMissingWebXml>false</failOnMissingWebXml>
+			  	  </configuration>
+			  </plugin>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.9</version>
@@ -335,15 +237,6 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-            <!-- web.xml이 없음 -->
-            <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-war-plugin</artifactId>
-		        <version>3.2.0</version>
-		        <configuration>
-		            <failOnMissingWebXml>false</failOnMissingWebXml>
-		        </configuration>
-		    </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
