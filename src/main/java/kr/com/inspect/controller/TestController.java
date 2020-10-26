@@ -22,6 +22,7 @@ public class TestController {
 	
 	@GetMapping("/postgreData")
 	public String testPostgre(Model model) {
+		
 		List<Sound> soundList = testDao.testPostgreFind();
 		for(Sound sound : soundList) {
 			System.out.println(sound.getTitle());
