@@ -37,6 +37,7 @@ public class PostgreDaoImpl implements PostgreDao {
 			Map<String, Object> map = hit.getSourceAsMap();
 			
 			Sound sound = new Sound();
+			sound.setId(hit.getId());
 			sound.setCategory((String)map.get("category"));
 			sound.setTitle((String)map.get("title"));
 			sound.setCompany((String)map.get("company"));
