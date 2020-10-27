@@ -36,7 +36,7 @@ public class MongoDaoImpl implements MongoDao {
 	@Override
 	public void insertElasticIndex(String database, String col, String index) {
 		// 인덱스를 통해 엘라스틱서치에서 데이터를 받아옴
-		SearchHit[] searchHits = elasticDao.getAllIndex(index);
+		SearchHit[] searchHits = elasticDao.getIndex(index);
 		
 		DB DB = mongoClient.getDB(database);
         DBCollection collection = DB.getCollection(col);

@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PostgreSQL 테스트</title>
+<title>몽고DB CRUD</title>
 </head>
 <body>
-<h2>PostgreSQL 테스트 페이지</h2>
-<div>
-	<h3>PostgreSQL 입력 테스트</h3>
-	
-</div>
+<h2>몽고DB CRUD</h2>
+<a href="insertElasticIndexToMongo">MongoDB에 Elasticsearch 인덱스 저장</a><br/>
 </body>
 </html>

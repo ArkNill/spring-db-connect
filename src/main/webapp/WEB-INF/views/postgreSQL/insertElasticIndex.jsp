@@ -9,9 +9,6 @@
 </head>
 <body>
 <h2>PostgreSQL에 성공적으로 등록되었습니다.</h2><br/>
-	<c:forEach items="${result}" var="item">
-		<li>${item}</li>
-	</c:forEach>
 <a href="index.jsp">처음으로</a>
 </body>
 </html>
