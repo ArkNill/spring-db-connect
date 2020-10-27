@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PostgreSQL</title>
+<title>Elasticsearch 특정 인덱스 데이터 모두 불러오기</title>
 </head>
 <body>
-<h2>PostgreSQL에 성공적으로 등록되었습니다.</h2><br/>
+<h2>Elasticsearch 특정 인덱스 데이터 모두 불러오기</h2>
+<div>
 	<c:forEach items="${result}" var="item">
-		<li>${item}</li>
+		<li><c:out value="${item}"/></li>
 	</c:forEach>
+</div>
 <a href="index.jsp">처음으로</a>
 </body>
 </html>

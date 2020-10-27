@@ -4,5 +4,5 @@ import org.elasticsearch.search.SearchHit;
 
 public interface ElasticDao {
 	public void close();
-	public SearchHit[] getAllIndex(String index);
+	public SearchHit[] getIndex(String index);
 }

@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>테스트</title>
+<title>Elasticsearch CRUD</title>
 </head>
 <body>
-<h2>테스트 페이지</h2>
-<a href="mongoTest">몽고DB 입력 테스트</a><br/>
-<a href="postgreTest">PostgreSQL 입력 테스트</a>
+<h2>Elasticsearch CRUD</h2>
+<a href="getElasticIndex">Elasticsearch 특정 인덱스 데이터 모두 불러오기</a><br/>
 </body>
 </html>

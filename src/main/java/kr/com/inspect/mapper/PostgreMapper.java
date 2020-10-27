@@ -12,8 +12,8 @@ import kr.com.inspect.dto.Sound;
 public interface PostgreMapper {
 	
 	@Insert("INSERT INTO public.audiolist"+
-							"(category,title,company,content)"+
-							"VALUES(#{category},#{title},#{company},#{content});")
+							"(id, category,title,company,content)"+
+							"VALUES(#{id}, #{category},#{title},#{company},#{content});")
 	public void insertValue(Sound sound);
 	
 	@Select("SELECT * FROM audiolist")

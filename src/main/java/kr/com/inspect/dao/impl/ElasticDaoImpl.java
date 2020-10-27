@@ -30,7 +30,7 @@ public class ElasticDaoImpl implements ElasticDao {
 	
 	/* 엘라스틱서치에서 해당되는 인덱스에 있는 데이터 모두 가져오기 */
 	@Override
-	public SearchHit[] getAllIndex(String index) {
+	public SearchHit[] getIndex(String index) {
 		// 엘라스틱서치 index 설정
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         SearchRequest searchRequest = new SearchRequest().indices(index);

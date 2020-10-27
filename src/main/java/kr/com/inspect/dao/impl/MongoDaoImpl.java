@@ -1,5 +1,8 @@
 package kr.com.inspect.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.Document;
 import org.elasticsearch.search.SearchHit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,30 +39,33 @@ public class MongoDaoImpl implements MongoDao {
 	@Override
 	public void insertElasticIndex(String database, String col, String index) {
 		// 인덱스를 통해 엘라스틱서치에서 데이터를 받아옴
-		SearchHit[] searchHits = elasticDao.getAllIndex(index);
+		SearchHit[] searchHits = elasticDao.getIndex(index);
 		
 		DB DB = mongoClient.getDB(database);
-        DBCollection collection = DB.getCollection(col);
-
-        String json;
-        DBObject dbObject;
-        
-        // for문을 돌며 MongoDB에 insert
-        // String을 json형태로 바꿔서 MongoDB에 저장
-        for(SearchHit hit: searchHits) {
-            json = hit.getSourceAsString();
-            System.out.println(json);
-            dbObject = (DBObject)JSON.parse(json);
-            collection.insert(dbObject);
+		DBCollection collection = DB.getCollection(col);
+		
+		String json;
+		DBObject dbObject;
+		
+		// for문을 돌며 MongoDB에 insert
+		// String을 json형태로 바꿔서 MongoDB에 저장
+		for(SearchHit hit: searchHits) {
+			json = hit.getSourceAsString();
+			System.out.println(json);
+			dbObject = (DBObject)JSON.parse(json);
+			collection.insert(dbObject);
+		}
+	}
+	
+	@Override
+	public List<Document> getCollection(String database, String col){
+		List<Document> list = new ArrayList<>();
+		MongoDatabase mDB = mongoClient.getDatabase(database);
+		MongoCollection<Document> mCollection = mDB.getCollection(col);
+		FindIterable<Document> documents = mCollection.find();
+		for (Document doc : documents){
+			list.add(doc);
         }
-        
-        // db.test.find()
-        MongoDatabase mDB = mongoClient.getDatabase(database);
-        MongoCollection<Document> mCollection = mDB.getCollection(col);
-        FindIterable<Document> documents = mCollection.find();
-        System.out.println(String.format("\n%s collection",col));
-        for (Document doc : documents){
-            System.out.println(doc.toJson());
-        }
+		return list;
 	}
 }
