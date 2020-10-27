@@ -50,7 +50,7 @@ public class PostgreController {
 		list.add(sound1);
 		list.add(sound2);
 		
-		postgreDao.insertPostgre(list);
+		//postgreDao.insertPostgre(list);
 		
 		return "postgreSQL/insertElasticIndex";
 	}
@@ -58,7 +58,7 @@ public class PostgreController {
 	/* PostgreSQL 특정 테이블 가져오기 */
 	@GetMapping("/getPostgreTable")
 	public String getPostgreTable(Model model) {
-		List<Sound> soundList = postgreDao.testPostgreFind();
+		List<Sound> soundList = postgreDao.getTable();
 		for(Sound sound : soundList) {
 			System.out.println(sound.getTitle());
 		}
