@@ -1,6 +1,5 @@
 package kr.com.inspect.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +27,6 @@ public class PostgreDaoImpl implements PostgreDao {
 
 	@Override
 	public void insertPostgre(String index) {
-		List<Sound> soundList = new ArrayList<>();
-		
 		// 인덱스를 통해 엘라스틱서치에서 데이터를 받아옴
 		SearchHit[] searchHits = elasticDao.getIndex(index);
 		

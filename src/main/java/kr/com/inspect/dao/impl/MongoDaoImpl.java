@@ -41,19 +41,14 @@ public class MongoDaoImpl implements MongoDao {
 		// 인덱스를 통해 엘라스틱서치에서 데이터를 받아옴
 		SearchHit[] searchHits = elasticDao.getIndex(index);
 		
-		DB DB = mongoClient.getDB(database);
-		DBCollection collection = DB.getCollection(col);
+		MongoDatabase DB = mongoClient.getDatabase(database);
+		MongoCollection<Document> collection = DB.getCollection(col);
 		
-		String json;
-		DBObject dbObject;
-		
-		// for문을 돌며 MongoDB에 insert
-		// String을 json형태로 바꿔서 MongoDB에 저장
 		for(SearchHit hit: searchHits) {
-			json = hit.getSourceAsString();
-			System.out.println(json);
-			dbObject = (DBObject)JSON.parse(json);
-			collection.insert(dbObject);
+			String json = hit.getSourceAsString();
+			Document document = Document.parse(json);
+			//document.put("_id", hit.getId());
+			collection.insertOne(document);
 		}
 	}
 	
