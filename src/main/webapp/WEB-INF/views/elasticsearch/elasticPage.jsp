@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>엘라스틱서치 DB 컨트롤</title>
+<title>Elasticsearch CRUD</title>
 </head>
 <body>
-<h2>엘라스틱서치 DB 컨트롤</h2>
-<a href="getElasticIndex">특정 인덱스 데이터 모두 불러오기</a><br/>
+<h2>Elasticsearch CRUD</h2>
+<a href="getElasticIndex">Elasticsearch 특정 인덱스 데이터 모두 불러오기</a><br/>
 </body>
 </html>

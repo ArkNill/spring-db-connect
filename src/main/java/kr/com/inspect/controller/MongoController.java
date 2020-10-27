@@ -4,14 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import kr.com.inspect.dao.ElasticDao;
 import kr.com.inspect.dao.MongoDao;
 
 @Controller
 public class MongoController {
-	@Autowired
-	private ElasticDao elasticDao;
-	
 	@Autowired
 	private MongoDao mongoDao;
 	
@@ -32,9 +28,13 @@ public class MongoController {
 	@GetMapping("/insertElasticIndexToMongo")
 	public String insertElasticIndexToMongo() {
 		mongoDao.insertElasticIndex(database, col, index);
-		//mongoDao.close();
-		//elasticDao.close();
-		
 		return "mongoDB/insertElasticIndex";
+	}
+	
+	/* 몽고DB 특정 컬렉션 가져오기 */
+	@GetMapping("/getMongoCollection")
+	public String getMongoCollection() {
+		
+		return "mongoDB/getCollection";
 	}
 }

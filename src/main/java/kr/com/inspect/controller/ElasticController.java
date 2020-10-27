@@ -27,7 +27,6 @@ public class ElasticController {
 	@GetMapping("/getElasticIndex")
 	public String getElasticIndex(Model model) {
 		SearchHit[] searchHits = elasticDao.getIndex(index);
-		//elasticDao.close();
 		
 		model.addAttribute("result", searchHits); 
 		return "elasticsearch/getIndex";

@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>몽고DB CRUD</title>
+<title>MongoDB CRUD</title>
 </head>
 <body>
-<h2>몽고DB CRUD</h2>
+<h2>MongoDB CRUD</h2>
 <a href="insertElasticIndexToMongo">MongoDB에 Elasticsearch 인덱스 저장</a><br/>
+<a href="getMongoCollection">MongoDB 특정 컬렉션 가져오기</a><br/>
 </body>
 </html>

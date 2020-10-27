@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MongoData</title>
+<title>MongoDB에 Elasticsearch 인덱스 저장</title>
 </head>
 <body>
 <h2>MongoDB에 성공적으로 등록되었습니다.</h2><br/>

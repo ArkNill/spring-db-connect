@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PostgreSQL</title>
+<title>PostgreSQL 특정 컬렉션 가져오기</title>
 </head>
 <body>
-<h2>PostgreSQL 전체 목록 불러오기</h2><br/>
+<h2>PostgreSQL 특정 컬렉션 가져오기</h2><br/>
 	<c:forEach items="${result}" var="item">
 		<li>${item}</li>
 	</c:forEach>

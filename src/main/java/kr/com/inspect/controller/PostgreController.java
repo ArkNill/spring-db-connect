@@ -31,17 +31,6 @@ public class PostgreController {
 		return "postgreSQL/postgrePage";
 	}
 	
-	/* PostgreSQL 특정 테이블 가져오기 */
-	@GetMapping("/getPostgreTable")
-	public String getPostgreTable(Model model) {
-		List<Sound> soundList = postgreDao.testPostgreFind();
-		for(Sound sound : soundList) {
-			System.out.println(sound.getTitle());
-		}
-		model.addAttribute("result", soundList);
-		return "postgreSQL/getTable";
-	}
-	
 	/* 엘라스틱서치 특정 인덱스를 PostgreSQL 특정 테이블에 넣기 */
 	@GetMapping("/insertElasticIndexToPostgre")
 	public String insertElasticIndexToPostgre() {
@@ -64,5 +53,16 @@ public class PostgreController {
 		postgreDao.insertPostgre(list);
 		
 		return "postgreSQL/insertElasticIndex";
+	}
+	
+	/* PostgreSQL 특정 테이블 가져오기 */
+	@GetMapping("/getPostgreTable")
+	public String getPostgreTable(Model model) {
+		List<Sound> soundList = postgreDao.testPostgreFind();
+		for(Sound sound : soundList) {
+			System.out.println(sound.getTitle());
+		}
+		model.addAttribute("result", soundList);
+		return "postgreSQL/getTable";
 	}
 }
