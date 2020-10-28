@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Docs Report</title>
+<title>Docx Report</title>
 </head>
 <body>
-<h2>Docs 파일 생성을 성공했습니다.</h2>
+<h2>Docx 파일 생성을 성공했습니다.</h2>
 </body>
 </html>

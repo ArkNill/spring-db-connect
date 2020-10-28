@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import kr.com.inspect.dao.PostgreDao;
 import kr.com.inspect.dto.Sound;
-import kr.com.inspect.report.DocsReport;
+import kr.com.inspect.report.DocxReport;
 import kr.com.inspect.report.HwpReport;
 import kr.com.inspect.report.PptxReport;
 import kr.com.inspect.report.XlsxReport;
@@ -26,11 +26,16 @@ public class ReportController {
 	private List<Sound>  list;
 	
 	/* 파일 생성 */
+	@Autowired
 	private HwpReport hwpReport;
-	private DocsReport docsReport;
+	
+	@Autowired
+	private DocxReport docxReport;
 	
 	@Autowired
 	private XlsxReport xlsxReport;
+	
+	@Autowired
 	private PptxReport pptxReport;
 	private String s = File.separator; //파일 구분
 	
@@ -46,7 +51,6 @@ public class ReportController {
 		list = postgreDao.getTable();
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "reports" + s;
-		String result = "";
 		String url = "";
 		
 		switch(format) {
@@ -55,10 +59,10 @@ public class ReportController {
 				hwpReport.writeHwp(path, list);
 				url = "report/hwpReport";
 				break;
-			case ("docs"): //docs 파일
-				path += "docs" + s;
-				docsReport.writeDocs(path, list);
-				url = "report/docsReport";
+			case ("docx"): //docx 파일
+				path += "docx" + s;
+				docxReport.writeDocx(path, list);
+				url = "report/docxReport";
 				break;
 			case ("xlsx"): //xlsx 파일
 				path += "xlsx" + s;

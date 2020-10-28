@@ -8,10 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -20,7 +18,7 @@ import kr.com.inspect.dto.Sound;
 
 @Service
 @PropertySource(value = "classpath:report.properties") 
-public class XlsxReport {
+public class DocxReport {
 	@Value("${table.column0}") 
 	private String column0;
 	
@@ -36,58 +34,49 @@ public class XlsxReport {
 	@Value("${table.column4}") 
 	private String column4;
 	
-	public void writeXlsx(String path, List<Sound> list) {
-		String xlsxFile = 
+	private String docxFile;
+	
+	public void writeDocx(String path, List<Sound> list) {
+		System.out.println("옴?");
+		docxFile = 
 				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
-				+ "_log.xlsx"; //파일명
-		XSSFWorkbook workbook = new XSSFWorkbook(); //워크북 
-		XSSFSheet sheet = workbook.createSheet(); //워크시트 
-		XSSFRow row = sheet.createRow(0); //행 
-		XSSFCell cell; //셀 
+				+ "_log.docx";
+		
+		XWPFDocument doc = new XWPFDocument();
+		XWPFTable table = doc.createTable(list.size()+1, 5);
 		
 		/* 헤더 정보 구성 */
-		cell = row.createCell(0);
-		cell.setCellValue(column0);
-		cell = row.createCell(1);
-		cell.setCellValue(column1);
-		cell = row.createCell(2);
-		cell.setCellValue(column2);
-		cell = row.createCell(3);
-		cell.setCellValue(column3);
-		cell = row.createCell(4);
-		cell.setCellValue(column4);
+		table.getRow(0).getCell(0).setText(column0);
+		table.getRow(0).getCell(1).setText(column1);
+		table.getRow(0).getCell(2).setText(column2);
+		table.getRow(0).getCell(3).setText(column3);
+		table.getRow(0).getCell(4).setText(column4);
 		
-		// 리스트의 size 만큼 row를 생성
 		Sound vo;
 		for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
 			vo = list.get(rowIdx);
-			row = sheet.createRow(rowIdx+1); //행 생성
-			cell = row.createCell(0);
-			cell.setCellValue(vo.getId());
-			cell = row.createCell(1);
-			cell.setCellValue(vo.getCategory());
-			cell = row.createCell(2);
-			cell.setCellValue(vo.getTitle());
-			cell = row.createCell(3);
-			cell.setCellValue(vo.getCompany());
-			cell = row.createCell(4);
-			cell.setCellValue(vo.getContent());
+			table.getRow(rowIdx+1).getCell(0).setText(vo.getId());
+			table.getRow(rowIdx+1).getCell(1).setText(vo.getCategory());
+			table.getRow(rowIdx+1).getCell(2).setText(vo.getTitle());
+			table.getRow(rowIdx+1).getCell(3).setText(vo.getCompany());
+			table.getRow(rowIdx+1).getCell(4).setText(vo.getContent());
 		}
 		
 		// 입력된 내용 파일로 쓰기
-		File file = new File(path + xlsxFile);
+		File file = new File(path + docxFile);
+		System.out.println(path + docxFile);
 		FileOutputStream fos = null;
-		
+				
 		try {
 			fos = new FileOutputStream(file);
-			workbook.write(fos);
+			doc.write(fos);
 		} catch (FileNotFoundException e) {
 			//e.printStackTrace();
 		} catch (IOException e) {
 			//e.printStackTrace();
 		} finally {
 			try {
-				if(workbook!=null) workbook.close();
+				if(doc!=null) doc.close();
 				if(fos!=null) fos.close();
 			} catch (IOException e) {
 				//e.printStackTrace();
