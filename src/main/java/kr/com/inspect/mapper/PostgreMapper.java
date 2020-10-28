@@ -17,5 +17,5 @@ public interface PostgreMapper {
 	public void insertValue(Sound sound);
 	
 	@Select("SELECT * FROM audiolist")
-	public List<Sound> findAll();
+	public List<Sound> getTable();
 }

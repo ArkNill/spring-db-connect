@@ -22,7 +22,7 @@ public class PostgreDaoImpl implements PostgreDao {
 	
 	@Override
 	public List<Sound> getTable() {
-		return postgreMapper.findAll();
+		return postgreMapper.getTable();
 	}
 
 	@Override

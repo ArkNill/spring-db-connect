@@ -19,6 +19,7 @@ public class ServletConfig implements WebMvcConfigurer {
 	/* 정적 자원 관리 */
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/reports/**").addResourceLocations("/reports/");
 	}
 	  
 	/* 뷰 영역 설정 */

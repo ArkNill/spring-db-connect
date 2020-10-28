@@ -11,5 +11,6 @@
 <a href="elasticPage">Elasticsearch</a><br/>
 <a href="mongoPage">MongoDB</a><br/>
 <a href="postgrePage">PostgreSQL</a><br/>
+<a href="reportPage">보고서 파일 생성</a><br/>
 </body>
 </html>
