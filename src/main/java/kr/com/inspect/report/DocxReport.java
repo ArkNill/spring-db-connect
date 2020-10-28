@@ -37,7 +37,6 @@ public class DocxReport {
 	private String docxFile;
 	
 	public void writeDocx(String path, List<Sound> list) {
-		System.out.println("옴?");
 		docxFile = 
 				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
 				+ "_log.docx";
@@ -64,7 +63,6 @@ public class DocxReport {
 		
 		// 입력된 내용 파일로 쓰기
 		File file = new File(path + docxFile);
-		System.out.println(path + docxFile);
 		FileOutputStream fos = null;
 				
 		try {
