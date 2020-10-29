@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.search.SearchHit;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +27,7 @@ public class PostgreDaoImpl implements PostgreDao {
 	}
 
 	@Override
-	public void insertPostgre(String index) {
+	public void insertElasticIndex(String index) {
 		// 인덱스를 통해 엘라스틱서치에서 데이터를 받아옴
 		SearchHit[] searchHits = elasticDao.getIndex(index);
 		
@@ -42,5 +43,10 @@ public class PostgreDaoImpl implements PostgreDao {
 			
 			postgreMapper.insertValue(sound);
 		}
+	}
+	
+	@Override
+	public JSONObject getJSONObject(String fullPath) {
+		return null;	
 	}
 }

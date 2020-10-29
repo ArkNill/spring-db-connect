@@ -62,6 +62,7 @@ public class DocxReport {
 		// 입력된 내용 파일로 쓰기
 		File file = new File(path + docxFileName);
 		FileOutputStream fos = null;
+		System.out.println(path + docxFileName);
 				
 		try {
 			fos = new FileOutputStream(file);

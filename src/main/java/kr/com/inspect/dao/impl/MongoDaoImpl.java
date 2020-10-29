@@ -1,21 +1,23 @@
 package kr.com.inspect.dao.impl;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
 import org.elasticsearch.search.SearchHit;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
 
 import kr.com.inspect.dao.ElasticDao;
 import kr.com.inspect.dao.MongoDao;
@@ -50,6 +52,28 @@ public class MongoDaoImpl implements MongoDao {
 			//document.put("_id", hit.getId());
 			collection.insertOne(document);
 		}
+	}
+	
+	@Override
+	public void insertJSONData(String database, String col, String fullPath) {
+		MongoDatabase DB = mongoClient.getDatabase(database);
+		MongoCollection<Document> collection = DB.getCollection(col);
+		
+		JSONParser parser = new JSONParser();
+        Object obj = null;
+		try {
+			obj = parser.parse(new FileReader(fullPath));
+		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+		} catch (IOException e) {
+			//e.printStackTrace();
+		} catch (ParseException e) {
+			//e.printStackTrace();
+		}
+        JSONObject jo = (JSONObject) obj;
+        String json = jo.toString();
+        Document document = Document.parse(json);
+        collection.insertOne(document);
 	}
 	
 	@Override

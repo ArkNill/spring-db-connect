@@ -41,11 +41,12 @@ public class PptxReport {
 		XMLSlideShow ppt = new XMLSlideShow();
 		
 		
-		File file = new File(pptxFileName);
+		File file = new File(path + pptxFileName);
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(file);
 			ppt.write(fos);
+			System.out.println(path + pptxFileName);
 		} catch (FileNotFoundException e) {
 			//e.printStackTrace();
 		} catch (IOException e) {

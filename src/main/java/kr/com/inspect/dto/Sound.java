@@ -1,23 +1,11 @@
 package kr.com.inspect.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "sound")
 public class Sound {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	String id;
-	String category;
-	String title;
-	String company;
-	String content;
+	private String id;
+	private String category;
+	private String title;
+	private String company;
+	private String content;
 	
 	public Sound() {}
 	public Sound(String id, String category, String title, String company, String content) {

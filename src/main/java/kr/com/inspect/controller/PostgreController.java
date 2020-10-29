@@ -25,9 +25,9 @@ public class PostgreController {
 	}
 	
 	/* 엘라스틱서치 특정 인덱스를 PostgreSQL 특정 테이블에 넣기 */
-	@GetMapping("/insertElasticIndexToPostgre")
-	public String insertElasticIndexToPostgre() {
-		postgreDao.insertPostgre(index);
+	@GetMapping("/insertElasticIndexIntoPostgre")
+	public String insertElasticIndexIntoPostgre() {
+		postgreDao.insertElasticIndex(index);
 		return "postgreSQL/insertElasticIndex";
 	}
 	

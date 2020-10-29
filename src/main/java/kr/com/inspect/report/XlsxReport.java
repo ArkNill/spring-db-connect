@@ -81,6 +81,7 @@ public class XlsxReport {
 		try {
 			fos = new FileOutputStream(file);
 			workbook.write(fos);
+			System.out.println(path + xlsxFileName);
 		} catch (FileNotFoundException e) {
 			//e.printStackTrace();
 		} catch (IOException e) {
