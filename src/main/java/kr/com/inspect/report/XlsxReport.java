@@ -37,7 +37,7 @@ public class XlsxReport {
 	private String column4;
 	
 	public void writeXlsx(String path, List<Sound> list) {
-		String xlsxFile = 
+		String xlsxFileName = 
 				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
 				+ "_log.xlsx"; //파일명
 		XSSFWorkbook workbook = new XSSFWorkbook(); //워크북 
@@ -75,7 +75,7 @@ public class XlsxReport {
 		}
 		
 		// 입력된 내용 파일로 쓰기
-		File file = new File(path + xlsxFile);
+		File file = new File(path + xlsxFileName);
 		FileOutputStream fos = null;
 		
 		try {

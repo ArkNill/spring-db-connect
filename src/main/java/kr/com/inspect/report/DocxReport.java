@@ -34,10 +34,8 @@ public class DocxReport {
 	@Value("${table.column4}") 
 	private String column4;
 	
-	private String docxFile;
-	
 	public void writeDocx(String path, List<Sound> list) {
-		docxFile = 
+		String docxFileName = 
 				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
 				+ "_log.docx";
 		
@@ -62,7 +60,7 @@ public class DocxReport {
 		}
 		
 		// 입력된 내용 파일로 쓰기
-		File file = new File(path + docxFile);
+		File file = new File(path + docxFileName);
 		FileOutputStream fos = null;
 				
 		try {

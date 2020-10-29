@@ -210,6 +210,13 @@
 		    <artifactId>poi-ooxml</artifactId>
 		    <version>4.1.2</version>
 		</dependency>
+		
+		<!-- hwplib -->
+		<dependency>
+		    <groupId>kr.dogfoot</groupId>
+		    <artifactId>hwplib</artifactId>
+		    <version>1.0.2</version>
+		</dependency>
 	
 		<!-- Test -->
 		<dependency>
