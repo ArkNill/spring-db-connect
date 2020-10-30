@@ -36,7 +36,7 @@ public class DocxReport {
 	
 	public void writeDocx(String path, List<Sound> list) {
 		String docxFileName = 
-				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
+				new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) 
 				+ "_log.docx";
 		
 		XWPFDocument doc = new XWPFDocument();

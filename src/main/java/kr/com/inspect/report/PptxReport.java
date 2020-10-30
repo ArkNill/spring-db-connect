@@ -35,7 +35,7 @@ public class PptxReport {
 	
 	public void writePptx(String path, List<Sound> list) {
 		String pptxFileName = 
-				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
+				new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) 
 				+ "_log.pptx";
 		
 		XMLSlideShow ppt = new XMLSlideShow();

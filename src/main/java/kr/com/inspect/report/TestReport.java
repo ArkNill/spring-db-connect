@@ -18,7 +18,9 @@ public class TestReport {
 		List<Sound> list = new ArrayList<>();
 		list.add(new Sound("테스트1", "테스트1", "테스트1", "테스트1", "테스트1"));
 		list.add(new Sound("테스트2", "테스트2", "테스트2", "테스트2", "테스트2"));
-		String path = "";
+		String path = "C:\\kyh\\export\\excel\\";
+		TestReport testReport = new TestReport();
+		testReport.run(path, list);
 
 	}
 
@@ -28,18 +30,12 @@ public class TestReport {
 				+ "_log.hwp";
 		
 		try {
-			HWPFile hwpFile = BlankFileMaker.make( );
-			ArrayList<Section> sList = hwpFile.getBodyText( ).getSectionList( );
-			System.out.println(sList.size());
-			
-			Sound vo;
-			for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
-				vo = list.get(rowIdx);
-				Paragraph p = sList.get(0).getParagraph(rowIdx);
-				p.getText().addString(vo.toString());
-			}			
-			HWPWriter.toFile(hwpFile, path+hwpFileName);
-			System.out.println(path + hwpFileName);
+			HWPFile hwpFile = BlankFileMaker.make();
+			Section s = hwpFile.getBodyText().getSectionList().get(0);
+			System.out.println(hwpFile.getBodyText().getSectionList().size());
+			Paragraph firstParagraph = s.getParagraph(0);
+			firstParagraph.getText().addString("이것은 추가된 문자열입니다.");
+			HWPWriter.toFile(hwpFile, "c:/temp/1.hwp" );
 		}catch(Exception e) {
 			//e.printStackTrace();
 		}

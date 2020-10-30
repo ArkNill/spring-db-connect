@@ -1,9 +1,11 @@
 package kr.com.inspect.report;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +40,7 @@ public class XlsxReport {
 	
 	public void writeXlsx(String path, List<Sound> list) {
 		String xlsxFileName = 
-				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
+				new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) 
 				+ "_log.xlsx"; //파일명
 		XSSFWorkbook workbook = new XSSFWorkbook(); //워크북 
 		XSSFSheet sheet = workbook.createSheet(); //워크시트 
@@ -75,24 +77,18 @@ public class XlsxReport {
 		}
 		
 		// 입력된 내용 파일로 쓰기
-		File file = new File(path + xlsxFileName);
+		String fullPath = path + xlsxFileName;
+		File file = new File(fullPath);
 		FileOutputStream fos = null;
-		
+
 		try {
-			fos = new FileOutputStream(file);
+			fos = new FileOutputStream(fullPath);
 			workbook.write(fos);
-			System.out.println(path + xlsxFileName);
-		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
 		} catch (IOException e) {
-			//e.printStackTrace();
-		} finally {
-			try {
-				if(workbook!=null) workbook.close();
-				if(fos!=null) fos.close();
-			} catch (IOException e) {
-				//e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
+		
+		
+		
 	}
 }

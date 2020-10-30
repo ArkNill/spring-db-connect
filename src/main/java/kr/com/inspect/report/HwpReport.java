@@ -36,22 +36,16 @@ public class HwpReport {
 	
 	public void writeHwp(String path, List<Sound> list) {
 		String hwpFileName = 
-				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
+				new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) 
 				+ "_log.hwp";
 		
 		try {
-			HWPFile hwpFile = BlankFileMaker.make( );
-			ArrayList<Section> sList = hwpFile.getBodyText( ).getSectionList( );
-			System.out.println(sList.size());
-			
-			Sound vo;
-			for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
-				vo = list.get(rowIdx);
-				Paragraph p = sList.get(0).getParagraph(rowIdx);
-				p.getText().addString(vo.toString());
-			}			
-			HWPWriter.toFile(hwpFile, path+hwpFileName);
-			System.out.println(path + hwpFileName);
+			HWPFile hwpFile = BlankFileMaker.make();
+			Section s = hwpFile.getBodyText().getSectionList().get(0);
+			Paragraph firstParagraph = s.getParagraph(0);
+			firstParagraph.getText().addString("이것은 추가된 문자열입니다.");
+			firstParagraph.getText().addString("이것은 추가된 문자열입니다.2");
+			HWPWriter.toFile(hwpFile, "c:/temp/1.hwp" );
 		}catch(Exception e) {
 			//e.printStackTrace();
 		}
