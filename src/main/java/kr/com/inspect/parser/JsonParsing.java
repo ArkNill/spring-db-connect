@@ -13,13 +13,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import kr.com.inspect.dao.PostgreDao;
 import kr.com.inspect.dto.Metadata;
 import kr.com.inspect.dto.Utterance;
 
-@Repository
+
 public class JsonParsing {
 	@Autowired
 	private PostgreDao postgreDao;
@@ -39,8 +38,7 @@ public class JsonParsing {
 	    return (JSONObject) obj;
 	}
 	
-	public Map setData(JSONObject obj) {
-		Map maps = new HashMap();
+	public Metadata setData(JSONObject obj) {
 		Map map = new HashMap();
 		Iterator<String> keys = null;
 		
@@ -57,7 +55,6 @@ public class JsonParsing {
 		map = (Map) obj.get("setting");
 		metadata.setRelation(map.get("relation").toString());
 		System.out.println(metadata);
-		maps.put("metadata", metadata);
 		
 		/* Speaker 파싱 */
 //		List<Speaker> speakerList = new ArrayList<>();
@@ -79,24 +76,24 @@ public class JsonParsing {
 //		maps.put("speaker", speakerList);
 		
 		/* Utterance 파싱 */
-		List<Utterance> utteranceList = new ArrayList<>();
-		map = (Map) obj.get("utterance");
-		keys = map.keySet().iterator();
-		while (keys.hasNext()) {
-		    String key = keys.next();
-		    Map element = (Map) map.get(key);
-		    Utterance utterance = new Utterance();
-		    utterance.setNote(element.get("note").toString());
-		    utterance.setStandard_form(element.get("standard_form").toString());
-		    utterance.setForm(element.get("form").toString());
-	    	utterance.setSpeaker_no(element.get("speaker_id").toString());
-		    utterance.setStart(Double.parseDouble(element.get("start").toString()));
-		    utterance.setEnd(Double.parseDouble(element.get("end").toString()));
-		    //foreign key(speaker)
-		    //foreign key(metadata)
-		    utteranceList.add(utterance);
-		}
-		maps.put("utterance", utteranceList);
+//		List<Utterance> utteranceList = new ArrayList<>();
+//		map = (Map) obj.get("utterance");
+//		keys = map.keySet().iterator();
+//		while (keys.hasNext()) {
+//		    String key = keys.next();
+//		    Map element = (Map) map.get(key);
+//		    Utterance utterance = new Utterance();
+//		    utterance.setNote(element.get("note").toString());
+//		    utterance.setStandard_form(element.get("standard_form").toString());
+//		    utterance.setForm(element.get("form").toString());
+//	    	utterance.setSpeaker_no(element.get("speaker_id").toString());
+//		    utterance.setStart(Double.parseDouble(element.get("start").toString()));
+//		    utterance.setEnd(Double.parseDouble(element.get("end").toString()));
+//		    //foreign key(speaker)
+//		    //foreign key(metadata)
+//		    utteranceList.add(utterance);
+//		}
+//		maps.put("utterance", utteranceList);
 
 		/* EojeolList 파싱 */
 //		List<EojeolList> eojeolListList = new ArrayList<>();
@@ -116,6 +113,6 @@ public class JsonParsing {
 //		}
 //		maps.put("eojeolList", eojeolListList);
 		
-		return maps;
+		return metadata;
 	}
 }

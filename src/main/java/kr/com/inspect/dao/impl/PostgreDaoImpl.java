@@ -23,9 +23,6 @@ public class PostgreDaoImpl implements PostgreDao {
 	@Autowired
 	private ElasticDao elasticDao;
 	
-	@Autowired
-	private JsonParsing jsonParsing;
-	
 	@Override
 	public List<Sound> getTable() {
 		return postgreMapper.getTable();
@@ -52,6 +49,7 @@ public class PostgreDaoImpl implements PostgreDao {
 	
 	@Override
 	public void insertJSONObject(String fullPath) {
+		JsonParsing jsonParsing = new JsonParsing();
 		JSONObject obj = jsonParsing.getJSONObject(fullPath);
 		Map map = jsonParsing.setData(obj);
 		Metadata metadata = (Metadata) map.get("metadata");
