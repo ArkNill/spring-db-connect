@@ -21,6 +21,7 @@ import com.mongodb.client.MongoDatabase;
 
 import kr.com.inspect.dao.ElasticDao;
 import kr.com.inspect.dao.MongoDao;
+import kr.com.inspect.parser.JsonParsing;
 
 @Repository
 @SuppressWarnings("deprecation")
@@ -54,28 +55,20 @@ public class MongoDaoImpl implements MongoDao {
 		}
 	}
 	
+	/* 몽고DB에 JSON 데이터를 입력하기 */
 	@Override
 	public void insertJSONData(String database, String col, String fullPath) {
 		MongoDatabase DB = mongoClient.getDatabase(database);
 		MongoCollection<Document> collection = DB.getCollection(col);
 		
-		JSONParser parser = new JSONParser();
-        Object obj = null;
-		try {
-			obj = parser.parse(new FileReader(fullPath));
-		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
-		} catch (IOException e) {
-			//e.printStackTrace();
-		} catch (ParseException e) {
-			//e.printStackTrace();
-		}
-        JSONObject jo = (JSONObject) obj;
+		JsonParsing jsonParsing = new JsonParsing();
+        JSONObject jo = jsonParsing.getJSONObject(fullPath);
         String json = jo.toString();
         Document document = Document.parse(json);
         collection.insertOne(document);
 	}
 	
+	/* 몽고DB 해당 컬렉션 다 가져오기 */
 	@Override
 	public List<Document> getCollection(String database, String col){
 		List<Document> list = new ArrayList<>();
