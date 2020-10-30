@@ -26,9 +26,9 @@ CREATE TABLE audio.utterance (
 	note text,
 	standard_form text,
 	form text NOT NULL,
+	speaker_no text,
 	start numeric,
 	"end" numeric,
-	speaker_id integer REFERENCES audio.speaker ON DELETE CASCADE,
 	metadata_id integer REFERENCES audio.metadata ON DELETE CASCADE
 );
 

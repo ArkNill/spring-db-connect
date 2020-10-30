@@ -7,18 +7,20 @@ public class Utterance {
 	private String note;
 	private String standard_form;
 	private String form;
+	private String speaker_no;
 	private double start;
 	private double end;
 	private List<EojeolList> eojoelList;
 	
 	public Utterance() {}
-	public Utterance(String id, String note, String standard_form, String form, int start, int end,
-			List<EojeolList> eojoelList) {
+	public Utterance(String id, String note, String standard_form, String form, String speaker_no, double start,
+			double end, List<EojeolList> eojoelList) {
 		super();
 		this.id = id;
 		this.note = note;
 		this.standard_form = standard_form;
 		this.form = form;
+		this.speaker_no = speaker_no;
 		this.start = start;
 		this.end = end;
 		this.eojoelList = eojoelList;
@@ -48,6 +50,12 @@ public class Utterance {
 	public void setForm(String form) {
 		this.form = form;
 	}
+	public String getSpeaker_no() {
+		return speaker_no;
+	}
+	public void setSpeaker_no(String speaker_no) {
+		this.speaker_no = speaker_no;
+	}
 	public double getStart() {
 		return start;
 	}
@@ -70,6 +78,7 @@ public class Utterance {
 	@Override
 	public String toString() {
 		return "Utterance [id=" + id + ", note=" + note + ", standard_form=" + standard_form + ", form=" + form
-				+ ", start=" + start + ", end=" + end + ", eojoelList=" + eojoelList + "]";
+				+ ", speaker_no=" + speaker_no + ", start=" + start + ", end=" + end + ", eojoelList=" + eojoelList
+				+ "]";
 	}
 }

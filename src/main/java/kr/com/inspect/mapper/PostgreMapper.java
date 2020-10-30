@@ -1,6 +1,7 @@
 package kr.com.inspect.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,10 +17,12 @@ import kr.com.inspect.dto.Utterance;
 public interface PostgreMapper {
 	
 	@Insert("INSERT INTO public.audiolist"+
-							"(id, category,title,company,content)"+
-							"VALUES(#{id}, #{category},#{title},#{company},#{content});")
+			"(id, category,title,company,content)"+
+			"VALUES(#{id}, #{category},#{title},#{company},#{content});")
 	public void insertValue(Sound sound);
 	
+	@Select("SELECT id FROM audio.metadata WHERE creator = #{creator} AND title = #{title};")
+	public String getMetadataId(Map map); 
 	
 	@Insert("INSERT INTO audio.metadata"+
 			"(creator, annotation_level, year, sampling, title, category, distributor, relation)"+
@@ -32,8 +35,8 @@ public interface PostgreMapper {
 //	public void insertIntoSpeaker(Speaker speaker);
 //	
 //	@Insert("INSERT INTO audio.utterance"+
-//			"(id, note, standard_form, form, start, end, metadata_id)"+
-//			"VALUES(#{id}, #{note}, #{standard_form}, #{form}, #{start}, #{end}, #{metadata_id});")
+//			"(id, note, standard_form, form, speaker_no, start, end, metadata_id)"+
+//			"VALUES(#{id}, #{note}, #{standard_form}, #{form}, #{speaker_no}, #{start}, #{end}, #{metadata_id});")
 //	public void insertIntoUtterance(Utterance utterance);
 //	
 //	@Insert("INSERT INTO audio.eojeolList"+

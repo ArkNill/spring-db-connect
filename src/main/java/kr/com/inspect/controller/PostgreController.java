@@ -31,6 +31,14 @@ public class PostgreController {
 		return "postgreSQL/insertElasticIndex";
 	}
 	
+	/* JSON 파일을 PostgreSQL 특정 테이블에 넣기 */
+	@GetMapping("/insertJSONIntoPostgre")
+	public String insertJSONObject() {
+		String fullPath = "C:\\kyh\\json\\1773b6eb-d433-4f58-98bc-9f780055661f_STT 16.json";
+		postgreDao.insertJSONObject(fullPath);
+		return "postgreSQL/insertJSON";
+	}
+	
 	/* PostgreSQL 특정 테이블 가져오기 */
 	@GetMapping("/getPostgreTable")
 	public String getPostgreTable(Model model) {

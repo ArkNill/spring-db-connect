@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import kr.com.inspect.dao.ElasticDao;
 import kr.com.inspect.dao.PostgreDao;
+import kr.com.inspect.dto.Metadata;
 import kr.com.inspect.dto.Sound;
 import kr.com.inspect.mapper.PostgreMapper;
+import kr.com.inspect.parser.JsonParsing;
 
 @Repository
 public class PostgreDaoImpl implements PostgreDao {
@@ -20,6 +22,9 @@ public class PostgreDaoImpl implements PostgreDao {
 	
 	@Autowired
 	private ElasticDao elasticDao;
+	
+	@Autowired
+	private JsonParsing jsonParsing;
 	
 	@Override
 	public List<Sound> getTable() {
@@ -46,7 +51,10 @@ public class PostgreDaoImpl implements PostgreDao {
 	}
 	
 	@Override
-	public JSONObject getJSONObject(String fullPath) {
-		return null;	
+	public void insertJSONObject(String fullPath) {
+		JSONObject obj = jsonParsing.getJSONObject(fullPath);
+		Map map = jsonParsing.setData(obj);
+		Metadata metadata = (Metadata) map.get("metadata");
+		postgreMapper.insertIntoMetadata(metadata);
 	}
 }
