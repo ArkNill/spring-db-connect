@@ -51,8 +51,7 @@ public class PostgreDaoImpl implements PostgreDao {
 	public void insertJSONObject(String fullPath) {
 		JsonParsing jsonParsing = new JsonParsing();
 		JSONObject obj = jsonParsing.getJSONObject(fullPath);
-		Map map = jsonParsing.setData(obj);
-		Metadata metadata = (Metadata) map.get("metadata");
+		Metadata metadata  = jsonParsing.setData(obj);
 		postgreMapper.insertIntoMetadata(metadata);
 	}
 }
