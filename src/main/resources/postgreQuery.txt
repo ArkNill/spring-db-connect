@@ -28,15 +28,15 @@ CREATE TABLE audio.utterance (
 	form text NOT NULL,
 	speaker_no text,
 	start numeric,
-	"end" numeric,
+	finish numeric,
 	metadata_id integer REFERENCES audio.metadata ON DELETE CASCADE
 );
 
 CREATE TABLE audio.eojeolList (
 	id text PRIMARY KEY,
 	standard text,
-	eojeol text NOT NULL,
-	"end" integer,
+	eojeol text,
+	finish integer,
 	isDialect boolean,
 	begin integer,
 	utterance_id text REFERENCES audio.utterance ON DELETE CASCADE

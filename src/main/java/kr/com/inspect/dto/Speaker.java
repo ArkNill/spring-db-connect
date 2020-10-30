@@ -1,16 +1,17 @@
 package kr.com.inspect.dto;
 
 public class Speaker {
-	private int id; //autoincrement
+	private int id; //primary key, auto increment
 	private int no;
 	private int shortcut;
 	private String occupation;
 	private String sex;
 	private String name;
 	private int age;
+	private int metadata_id; //foreign key
 	
 	public Speaker() {}
-	public Speaker(int id, int no, int shortcut, String occupation, String sex, String name, int age) {
+	public Speaker(int id, int no, int shortcut, String occupation, String sex, String name, int age, int metadata_id) {
 		super();
 		this.id = id;
 		this.no = no;
@@ -19,6 +20,7 @@ public class Speaker {
 		this.sex = sex;
 		this.name = name;
 		this.age = age;
+		this.metadata_id = metadata_id;
 	}
 	
 	public int getId() {
@@ -63,10 +65,16 @@ public class Speaker {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	public int getMetadata_id() {
+		return metadata_id;
+	}
+	public void setMetadata_id(int metadata_id) {
+		this.metadata_id = metadata_id;
+	}
 	
 	@Override
 	public String toString() {
 		return "Speaker [id=" + id + ", no=" + no + ", shortcut=" + shortcut + ", occupation=" + occupation + ", sex="
-				+ sex + ", name=" + name + ", age=" + age + "]";
+				+ sex + ", name=" + name + ", age=" + age + ", metadata_id=" + metadata_id + "]";
 	}
 }

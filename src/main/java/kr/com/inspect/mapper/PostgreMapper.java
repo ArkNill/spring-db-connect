@@ -22,27 +22,27 @@ public interface PostgreMapper {
 	public void insertValue(Sound sound);
 	
 	@Select("SELECT id FROM audio.metadata WHERE creator = #{creator} AND title = #{title};")
-	public String getMetadataId(Map map); 
+	public int getMetadataId(Map map); 
 	
 	@Insert("INSERT INTO audio.metadata"+
 			"(creator, annotation_level, year, sampling, title, category, distributor, relation)"+
 			"VALUES(#{creator}, #{annotation_level}, #{year}, #{sampling}, #{title}, #{category}, #{distributor}, #{relation});")
 	public void insertIntoMetadata(Metadata metadata);
 	
-//	@Insert("INSERT INTO audio.speaker"+
-//			"(no, shortcut, occupation, sex, name, age, metadata_id)"+
-//			"VALUES(#{no}, #{shortcut}, #{occupation}, #{sex}, #{name}, #{age}, #{metadata_id});")
-//	public void insertIntoSpeaker(Speaker speaker);
-//	
-//	@Insert("INSERT INTO audio.utterance"+
-//			"(id, note, standard_form, form, speaker_no, start, end, metadata_id)"+
-//			"VALUES(#{id}, #{note}, #{standard_form}, #{form}, #{speaker_no}, #{start}, #{end}, #{metadata_id});")
-//	public void insertIntoUtterance(Utterance utterance);
-//	
-//	@Insert("INSERT INTO audio.eojeolList"+
-//			"(id, standard, eojeol, end, isDialect, begin, utterance_id)"+
-//			"VALUES(#{id}, #{standard}, #{eojeol}, #{end}, #{isDialect}, #{begin}, #{utterance_id});")
-//	public void insertIntoEojeolList(EojeolList eojeolList);
+	@Insert("INSERT INTO audio.speaker"+
+			"(no, shortcut, occupation, sex, name, age, metadata_id)"+
+			"VALUES(#{no}, #{shortcut}, #{occupation}, #{sex}, #{name}, #{age}, #{metadata_id});")
+	public void insertIntoSpeaker(Speaker speaker);
+	
+	@Insert("INSERT INTO audio.utterance"+
+			"(id, note, standard_form, form, speaker_no, start, finish, metadata_id)"+
+			"VALUES(#{id}, #{note}, #{standard_form}, #{form}, #{speaker_no}, #{start}, #{end}, #{metadata_id});")
+	public void insertIntoUtterance(Utterance utterance);
+	
+	@Insert("INSERT INTO audio.eojeolList"+
+			"(id, standard, eojeol, finish, isDialect, begin, utterance_id)"+
+			"VALUES(#{id}, #{standard}, #{eojeol}, #{end}, #{isDialect}, #{begin}, #{utterance_id});")
+	public void insertIntoEojeolList(EojeolList eojeolList);
 	
 	@Select("SELECT * FROM audiolist")
 	public List<Sound> getTable();

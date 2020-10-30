@@ -3,18 +3,19 @@ package kr.com.inspect.dto;
 import java.util.List;
 
 public class Utterance {
-	private String id;
+	private String id; //primary key
 	private String note;
 	private String standard_form;
 	private String form;
 	private String speaker_no;
 	private double start;
 	private double end;
+	private int metadata_id; //foreign key
 	private List<EojeolList> eojoelList;
 	
 	public Utterance() {}
 	public Utterance(String id, String note, String standard_form, String form, String speaker_no, double start,
-			double end, List<EojeolList> eojoelList) {
+			double end, int metadata_id, List<EojeolList> eojoelList) {
 		super();
 		this.id = id;
 		this.note = note;
@@ -23,6 +24,7 @@ public class Utterance {
 		this.speaker_no = speaker_no;
 		this.start = start;
 		this.end = end;
+		this.metadata_id = metadata_id;
 		this.eojoelList = eojoelList;
 	}
 	
@@ -68,6 +70,12 @@ public class Utterance {
 	public void setEnd(double end) {
 		this.end = end;
 	}
+	public int getMetadata_id() {
+		return metadata_id;
+	}
+	public void setMetadata_id(int metadata_id) {
+		this.metadata_id = metadata_id;
+	}
 	public List<EojeolList> getEojoelList() {
 		return eojoelList;
 	}
@@ -78,7 +86,7 @@ public class Utterance {
 	@Override
 	public String toString() {
 		return "Utterance [id=" + id + ", note=" + note + ", standard_form=" + standard_form + ", form=" + form
-				+ ", speaker_no=" + speaker_no + ", start=" + start + ", end=" + end + ", eojoelList=" + eojoelList
-				+ "]";
+				+ ", speaker_no=" + speaker_no + ", start=" + start + ", end=" + end + ", metadata_id=" + metadata_id
+				+ ", eojoelList=" + eojoelList + "]";
 	}
 }

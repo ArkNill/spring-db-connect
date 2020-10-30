@@ -3,7 +3,7 @@ package kr.com.inspect.dto;
 import java.util.List;
 
 public class Metadata {
-	private int id; //autoincrement
+	private int id; //primary key, auto increment
 	private String creator;
 	private String annotation_level;
 	private String year;
