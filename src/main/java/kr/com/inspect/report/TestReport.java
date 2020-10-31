@@ -26,15 +26,15 @@ public class TestReport {
 
 	public void run(String path, List<Sound> list) {
 		String hwpFileName = 
-				new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").format(new Date()) 
+				new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) 
 				+ "_log.hwp";
 		
 		try {
 			HWPFile hwpFile = BlankFileMaker.make();
 			Section s = hwpFile.getBodyText().getSectionList().get(0);
-			System.out.println(hwpFile.getBodyText().getSectionList().size());
 			Paragraph firstParagraph = s.getParagraph(0);
 			firstParagraph.getText().addString("이것은 추가된 문자열입니다.");
+			firstParagraph.getText().addString("이것은 추가된 문자열입니다.2");
 			HWPWriter.toFile(hwpFile, "c:/temp/1.hwp" );
 		}catch(Exception e) {
 			//e.printStackTrace();
