@@ -13,6 +13,7 @@ import kr.com.inspect.dto.Sound;
 import kr.dogfoot.hwplib.object.HWPFile;
 import kr.dogfoot.hwplib.object.bodytext.Section;
 import kr.dogfoot.hwplib.object.bodytext.paragraph.Paragraph;
+import kr.dogfoot.hwplib.object.bodytext.paragraph.text.ParaText;
 import kr.dogfoot.hwplib.tool.blankfilemaker.BlankFileMaker;
 import kr.dogfoot.hwplib.writer.HWPWriter;
 
@@ -42,10 +43,14 @@ public class HwpReport {
 		try {
 			HWPFile hwpFile = BlankFileMaker.make();
 			Section s = hwpFile.getBodyText().getSectionList().get(0);
-			Paragraph firstParagraph = s.getParagraph(0);
-			firstParagraph.getText().addString("이것은 추가된 문자열입니다.");
-			firstParagraph.getText().addString("이것은 추가된 문자열입니다.2");
-			HWPWriter.toFile(hwpFile, "c:/temp/1.hwp" );
+			Paragraph p = s.getParagraph(0);
+			p.createText();
+			ParaText pt = p.getText();
+			for(int rowIdx=0; rowIdx < list.size(); rowIdx++) {
+				pt.addString(list.get(rowIdx).toString());
+				pt.addString("\n\n");
+			}
+			HWPWriter.toFile(hwpFile, path+hwpFileName);
 		}catch(Exception e) {
 			//e.printStackTrace();
 		}
