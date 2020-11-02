@@ -9,5 +9,5 @@ import kr.com.inspect.dto.Sound;
 public interface PostgreDao {
 	public List<Sound> getTable();
 	public void insertElasticIndex(String index);
-	public void insertJSONObject(String fullPath);
+	public boolean insertJSONObject(String path);
 }

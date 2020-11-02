@@ -25,7 +25,7 @@ CREATE TABLE audio.utterance (
 	id text PRIMARY KEY,
 	note text,
 	standard_form text,
-	form text NOT NULL,
+	form text,
 	speaker_no text,
 	start numeric,
 	finish numeric,

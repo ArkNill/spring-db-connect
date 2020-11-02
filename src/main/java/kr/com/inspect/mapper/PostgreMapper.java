@@ -24,6 +24,9 @@ public interface PostgreMapper {
 	@Select("SELECT id FROM audio.metadata WHERE creator = #{creator} AND title = #{title};")
 	public int getMetadataId(Map map); 
 	
+	@Select("SELECT id FROM audio.metadata WHERE creator = #{creator} AND title = #{title};")
+	public String isExistMetadataId(Map map); 
+	
 	@Insert("INSERT INTO audio.metadata"+
 			"(creator, annotation_level, year, sampling, title, category, distributor, relation)"+
 			"VALUES(#{creator}, #{annotation_level}, #{year}, #{sampling}, #{title}, #{category}, #{distributor}, #{relation});")

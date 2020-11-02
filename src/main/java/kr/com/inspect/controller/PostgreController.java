@@ -41,8 +41,11 @@ public class PostgreController {
 	public String insertJSONObject(HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "json" + s + "test" + s;
-		postgreDao.insertJSONObject(path);
-		return "postgreSQL/insertJSON";
+		boolean flag = postgreDao.insertJSONObject(path);
+		if(flag == true) {
+			return "postgreSQL/insertJSON";
+		}
+		return "postgreSQL/insertFailJSON";
 	}
 	
 	/* PostgreSQL 특정 테이블 가져오기 */

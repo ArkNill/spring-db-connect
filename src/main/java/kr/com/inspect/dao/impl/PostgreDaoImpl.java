@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FilenameUtils;
 import org.elasticsearch.search.SearchHit;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +54,16 @@ public class PostgreDaoImpl implements PostgreDao {
 	}
 	
 	@Override
-	public void insertJSONObject(String path) {
+	public boolean insertJSONObject(String path) {
 		File dir = new File(path);
 		File[] fileList = dir.listFiles();
+		boolean check = false;
 		
 		for(File file : fileList){
-		    if(file.isFile()){
-		    	String fileName = file.getName();
-		    	String fullPath = path + fileName;
+			/* 확장자가 json인 파일을 읽는다 */
+		    if(file.isFile() && FilenameUtils.getExtension(file.getName()).equals("json")){
+		    	String fullPath = path + file.getName();
+			   System.out.println(fullPath);
 		    	
 		    	/* json 파일을 읽어서 객체로 파싱 */
 				JsonParsing jsonParsing = new JsonParsing();
@@ -68,30 +71,44 @@ public class PostgreDaoImpl implements PostgreDao {
 				
 				/* metadata 테이블 입력 */
 				Metadata metadata  = jsonParsing.setMetadata(obj);
-				postgreMapper.insertIntoMetadata(metadata); 
 				
 				/* metadata_id를 가져옴(creator, title) */
 				Map map = new HashMap();
 				map.put("creator", metadata.getCreator());
 				map.put("title", metadata.getTitle());
-				int metadata_id = postgreMapper.getMetadataId(map);
+				String isExistId = postgreMapper.isExistMetadataId(map);
 				
-				/* speaker 테이블 입력 */
-				List<Speaker> speakerList = jsonParsing.setSpeaker(obj, metadata_id);
-				for(Speaker speaker : speakerList) {
-					postgreMapper.insertIntoSpeaker(speaker);
-				}
-				
-				/* utterance 테이블 입력 */
-				List<Utterance> utteranceList = jsonParsing.setUtterance(obj, metadata_id);
-				for(Utterance utterance : utteranceList) {
-					postgreMapper.insertIntoUtterance(utterance); //utterance 입력
-					List<EojeolList> eojeolListList = utterance.getEojoelList();
-					for(EojeolList eojeolList : eojeolListList) {
-						postgreMapper.insertIntoEojeolList(eojeolList); //eojeolList 입력
+				if(isExistId == null) { //등록된 데이터가 아닐 경우
+					check = true;
+					
+					/* metadata 테이블 입력 */
+					postgreMapper.insertIntoMetadata(metadata); 
+					
+					/* auto increment로 등록된 id를 가져옴 */
+					int metadata_id = postgreMapper.getMetadataId(map);
+					
+					/* speaker 테이블 입력 */
+					List<Speaker> speakerList = jsonParsing.setSpeaker(obj, metadata_id);
+					for(Speaker speaker : speakerList) {
+						postgreMapper.insertIntoSpeaker(speaker);
+					}
+					
+					/* utterance 테이블 입력 */
+					List<Utterance> utteranceList = jsonParsing.setUtterance(obj, metadata_id);
+					for(Utterance utterance : utteranceList) {
+						postgreMapper.insertIntoUtterance(utterance); //utterance 입력
+						List<EojeolList> eojeolListList = utterance.getEojoelList();
+						for(EojeolList eojeolList : eojeolListList) {
+							postgreMapper.insertIntoEojeolList(eojeolList); //eojeolList 입력
+						}
 					}
 				}
 		    }
-		} 
+		}
+		if(check == true) { //아직 등록되지 않은 데이터가 하나라도 있을 경우
+			return true;
+		}else { //모두 중복된 데이터일 경우
+			return false; 
+		}
 	}
 }

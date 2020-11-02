@@ -8,7 +8,7 @@
 <title>PostgreSQL JSON 넣기</title>
 </head>
 <body>
-<h2>(등록 성공) PostgreSQL에 JSON 파일(들)을 성공적으로 넣었습니다.</h2><br/>
+<h2>(등록 실패) PostgreSQL에 이미 등록된 JSON 파일(들)입니다.</h2><br/>
 <a href="index.jsp">처음으로</a>
 </body>
 </html>
