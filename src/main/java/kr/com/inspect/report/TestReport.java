@@ -36,6 +36,8 @@ public class TestReport {
 				new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()) 
 				+ "_log.docx";
 		
+		System.out.println("테스트");
+		
 		XWPFDocument doc = new XWPFDocument();
 		XWPFTable table = doc.createTable(list.size()+1, 5);
 		
