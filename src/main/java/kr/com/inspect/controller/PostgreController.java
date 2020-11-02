@@ -40,7 +40,7 @@ public class PostgreController {
 	@GetMapping("/insertJSONIntoPostgre")
 	public String insertJSONObject(HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("/");
-		String path = "C:" +s+ "kyh" +s+ "json" +s;
+		String path = root + "json" + s + "test" + s;
 		postgreDao.insertJSONObject(path);
 		return "postgreSQL/insertJSON";
 	}
