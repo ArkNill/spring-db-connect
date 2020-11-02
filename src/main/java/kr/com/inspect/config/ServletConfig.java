@@ -19,10 +19,10 @@ import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver;
 public class ServletConfig implements WebMvcConfigurer {
 	/* 정적 자원 관리 */
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/reports/hwp/**").addResourceLocations("/reports/hwp/");
-		registry.addResourceHandler("/reports/docx/**").addResourceLocations("/reports/docx/");
-		registry.addResourceHandler("/reports/xlsx/**").addResourceLocations("/reports/xlsx/");
-		registry.addResourceHandler("/reports/pptx/**").addResourceLocations("/reports/pptx/");
+//		registry.addResourceHandler("/reports/hwp/**").addResourceLocations("/reports/hwp/");
+//		registry.addResourceHandler("/reports/docx/**").addResourceLocations("/reports/docx/");
+//		registry.addResourceHandler("/reports/xlsx/**").addResourceLocations("/reports/xlsx/");
+//		registry.addResourceHandler("/reports/pptx/**").addResourceLocations("/reports/pptx/");
 	}
 	  
 	/* 뷰 영역 설정 */

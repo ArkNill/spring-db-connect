@@ -3,6 +3,8 @@ package kr.com.inspect.controller;
 import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,8 @@ public class PostgreController {
 	
 	/* JSON 파일을 PostgreSQL 특정 테이블에 넣기 */
 	@GetMapping("/insertJSONIntoPostgre")
-	public String insertJSONObject() {
+	public String insertJSONObject(HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = "C:" +s+ "kyh" +s+ "json" +s;
 		postgreDao.insertJSONObject(path);
 		return "postgreSQL/insertJSON";
