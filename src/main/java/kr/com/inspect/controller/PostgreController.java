@@ -1,5 +1,6 @@
 package kr.com.inspect.controller;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class PostgreController {
 	//엘라스틱서치
 	private String index = "audiolist";
 	
+	private String s = File.separator;
+	
 	/* PostgreSQL 페이지 이동 */
 	@GetMapping("/postgrePage")
 	public String moveToElasticPage() {
@@ -34,8 +37,8 @@ public class PostgreController {
 	/* JSON 파일을 PostgreSQL 특정 테이블에 넣기 */
 	@GetMapping("/insertJSONIntoPostgre")
 	public String insertJSONObject() {
-		String fullPath = "C:\\kyh\\json\\1773b6eb-d433-4f58-98bc-9f780055661f_STT 16.json";
-		postgreDao.insertJSONObject(fullPath);
+		String path = "C:" +s+ "kyh" +s+ "json" +s;
+		postgreDao.insertJSONObject(path);
 		return "postgreSQL/insertJSON";
 	}
 	
