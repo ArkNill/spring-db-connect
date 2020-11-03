@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import kr.com.inspect.dto.Account;
 import kr.com.inspect.dto.EojeolList;
 import kr.com.inspect.dto.Metadata;
 import kr.com.inspect.dto.Sound;
@@ -24,8 +25,8 @@ public interface PostgreMapper {
 	@Select("SELECT id FROM audio.metadata WHERE creator = #{creator} AND title = #{title};")
 	public int getMetadataId(Map map); 
 	
-	@Select("SELECT id FROM audio.metadata WHERE creator = #{creator} AND title = #{title};")
-	public String isExistMetadataId(Map map); 
+	@Select("SELECT id FROM audio.user_info WHERE id = #{id};")
+	public String readAccount(String id);
 	
 	@Insert("INSERT INTO audio.metadata"+
 			"(creator, annotation_level, year, sampling, title, category, distributor, relation)"+
@@ -49,4 +50,6 @@ public interface PostgreMapper {
 	
 	@Select("SELECT * FROM audiolist")
 	public List<Sound> getTable();
+	
+	
 }
